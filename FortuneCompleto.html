@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Encontrar Oportunidades</title>
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #fff;
+}
+
+.neon-border {
+  box-shadow: 0 0 10px #ff6a00, 0 0 20px #ff6a00, 0 0 30px #ff6a00, 0 0 40px #ff6a00, 0 0 50px #ff6a00, 0 0 60px #ff6a00, 0 0 70px #ff6a00;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+}
+
+#button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 50px;
+  background-color: #ff6a00;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#button:hover {
+  background-color: #ff851b;
+}
+
+#loading {
+  display: none;
+  margin-top: 20px;
+  width: 100px;
+  height: 100px;
+  border: 10px solid transparent;
+  border-top-color: #ff6a00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#percentage {
+  display: none;
+  margin-top: 10px;
+  font-size: 24px;
+  text-align: center;
+  text-shadow: 0 0 10px #ff6a00;
+}
+
+#percentage.orange {
+  color: #ff6a00;
+}
+
+#percentage.yellow {
+  color: #ffcc00;
+}
+
+#percentage.green {
+  color: #00ff00;
+}
+
+#valid-until {
+  display: none;
+  margin-top: 10px;
+  font-size: 18px;
+  text-align: center;
+  text-shadow: 0 0 10px #ff6a00;
+}
+
+#iframe-container {
+  width: 100%;
+  height: 50%;
+  border: 2px solid #ff6a00;
+  border-radius: 5px;
+}
+
+#iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+  </style>
+</head>
+<body>
+  <div id="content">
+    <button id="button">Encontrar Oportunidades</button>
+    <div id="loading"></div>
+  </div>
+  <div id="iframe-container">
+    <iframe id="iframe" src="https://bet7k.com/casino/20102-fortunetiger"></iframe>
+  </div>
+  <script>
+  document.getElementById("button").addEventListener("click", function() {
+  var button = document.getElementById("button");
+  var loading = document.getElementById("loading");
+
+  button.disabled = true;
+  button.innerHTML = "Encontrando Oportunidades...";
+  loading.style.display = "block";
+
+  setTimeout(function() {
+    button.disabled = false;
+    button.innerHTML = "Desligar Sinais";
+    loading.style.display = "none";
+
+    var percentage = document.getElementById("percentage");
+    if (!percentage) {
+      percentage = document.createElement("span");
+      percentage.id = "percentage";
+      button.parentNode.insertBefore(percentage, button);
+    }
+
+    var validUntil = document.getElementById("valid-until");
+    if (!validUntil) {
+      validUntil = document.createElement("span");
+      validUntil.id = "valid-until";
+      button.parentNode.insertBefore(validUntil, button.nextSibling);
+    }
+
+    percentage.style.display = "block";
+    validUntil.style.display = "block";
+
+    var currentPercentage = 87;
+    var intervalId;
+
+    function updatePercentage() {
+      var randomPercentage = Math.floor(Math.random() * (95 - 87 + 1) + 87);
+      var colorClass = "";
+      if (randomPercentage >= 87 && randomPercentage <= 89) {
+        colorClass = "orange";
+      } else if (randomPercentage >= 90 && randomPercentage <= 93) {
+        colorClass = "yellow";
+      } else if (randomPercentage >= 94 && randomPercentage <= 95) {
+        colorClass = "green";
+      }
+      percentage.innerText = "Probabilidade de Ganhos em: " + randomPercentage + "%";
+      percentage.className = colorClass;
+    }
+
+    function resetPage() {
+      button.disabled = false;
+      button.innerHTML = "Hacker Fortune Tiger";
+      percentage.style.display = "none";
+      validUntil.style.display = "none";
+      clearInterval(intervalId);
+    }
+
+    updatePercentage();
+    intervalId = setInterval(updatePercentage, 15000);
+
+    var currentTime = new Date();
+    var validTime = new Date(currentTime.getTime() + 2 * 60000);
+    validUntil.innerText = "Válido até: " + validTime.toLocaleTimeString();
+
+    setTimeout(function() {
+      resetPage();
+    }, 2 * 60000);
+  }, 5000);
+});
+
+  </script>
+</body>
+</html>
